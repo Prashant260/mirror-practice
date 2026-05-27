@@ -4,7 +4,7 @@ const axios = require('axios');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const BACKEND_URL = process.env.BACKEND_URL || 'http://13.201.169.50:5000';
+const BACKEND_URL = process.env.BACKEND_URL || 'http://backend:5000';
 
 console.log('Frontend starting on port:', PORT);
 console.log('Backend URL:', BACKEND_URL);
