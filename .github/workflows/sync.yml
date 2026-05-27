@@ -15,11 +15,6 @@ jobs:
         run: |
           git clone --mirror https://${{ secrets.BB_USERNAME }}:${{ secrets.BB_APP_PASSWORD }}@bitbucket.org/${{ secrets.BB_WORKSPACE }}/${{ secrets.BB_REPO }}.git
 
-      - name: Configure Git
-        run: |
-          git config --global user.name "prashant260"
-          git config --global user.email "prashantagchoudhary20004@gmail.com"
-
       - name: Push to GitHub
         run: |
           cd ${{ secrets.BB_REPO }}.git
