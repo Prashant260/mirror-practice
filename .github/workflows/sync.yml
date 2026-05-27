@@ -13,7 +13,7 @@ jobs:
     steps:
       - name: Clone Bitbucket Mirror
         run: |
-          git clone --mirror https://${{ secrets.BB_USERNAME }}:${{ secrets.BB_APP_PASSWORD }}@bitbucket.org/${{ secrets.BB_WORKSPACE }}/${{ secrets.BB_REPO }}.git
+          git clone --mirror "https://${{ secrets.BB_USERNAME }}:${{ secrets.BB_APP_PASSWORD }}@bitbucket.org/${{ secrets.BB_WORKSPACE }}/${{ secrets.BB_REPO }}.git"
 
       - name: Configure Git
         run: |
