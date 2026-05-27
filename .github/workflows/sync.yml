@@ -13,7 +13,9 @@ jobs:
     steps:
       - name: Clone Bitbucket Mirror
         run: |
-          git clone --mirror "https://${{ secrets.BB_USERNAME }}:${{ secrets.BB_APP_PASSWORD }}@bitbucket.org/${{ secrets.BB_WORKSPACE }}/${{ secrets.BB_REPO }}.git"
+          BB_USERNAME_ENCODED=$(python3 -c "import urllib.parse; print(urllib.parse.quote('${{ secrets.BB_USERNAME }}', safe=''))")
+          BB_PASSWORD_ENCODED=$(python3 -c "import urllib.parse; print(urllib.parse.quote('${{ secrets.BB_APP_PASSWORD }}', safe=''))")
+          git clone --mirror "https://${BB_USERNAME_ENCODED}:${BB_PASSWORD_ENCODED}@bitbucket.org/${{ secrets.BB_WORKSPACE }}/${{ secrets.BB_REPO }}.git"
 
       - name: Configure Git
         run: |
