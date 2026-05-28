@@ -1,15 +1,12 @@
-FROM mysql:8.0
+FROM postgres:15
 
 # Set environment variables
-ENV MYSQL_ROOT_PASSWORD=password \
-    MYSQL_DATABASE=three_tier_app
+ENV POSTGRES_PASSWORD=password \
+    POSTGRES_DB=three_tier_app \
+    POSTGRES_USER=postgres
 
 # Copy initialization script
 COPY init.sql /docker-entrypoint-initdb.d/
 
-# Expose MySQL port
-EXPOSE 3306
-
-# MySQL will automatically execute any .sql files in /docker-entrypoint-initdb.d/
-# when the container starts for the first time
-CMD ["mysqld"]
+# Expose PostgreSQL port
+EXPOSE 5432

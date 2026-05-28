@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+
+kind: Deployment
+metadata:
+  name: backend-deployment
+  labels:
+    app: backend  
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+      - name: backend
+        image: prashant260/backend:v1
+        ports:
+        - containerPort: 5000
+        env:
+        - name: DB_HOST
+          value: "database-service"
+        - name: DB_PORT
+          value: "5432"
+        envFrom:
+        - secretRef:
+            name: db-credentials 
+        resources:
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+      imagePullSecrets:
+      - name: docker-credentials
+      
